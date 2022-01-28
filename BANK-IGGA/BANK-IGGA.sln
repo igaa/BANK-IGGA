@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BANK-IGGA", "BANK-IGGA\BANK-IGGA.csproj", "{4DF6AF93-186C-4503-A940-B67F26FC840A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4DF6AF93-186C-4503-A940-B67F26FC840A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DF6AF93-186C-4503-A940-B67F26FC840A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DF6AF93-186C-4503-A940-B67F26FC840A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DF6AF93-186C-4503-A940-B67F26FC840A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BA7F532B-FFBD-4AB2-B50B-8930F2260FBF}
+	EndGlobalSection
+EndGlobal
