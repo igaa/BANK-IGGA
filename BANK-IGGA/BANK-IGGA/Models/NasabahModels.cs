@@ -15,4 +15,10 @@ namespace BANK_IGGA.Models
         public string no_ktp { get; set; }
         public string nohp { get; set; }
     }
+
+    public class Nama_Kota
+    {
+        private string provinsi { get; set; }
+        private string kabupaten { get; set; }
+    }
 }

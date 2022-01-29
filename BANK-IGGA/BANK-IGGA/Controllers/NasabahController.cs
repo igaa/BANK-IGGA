@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BANK_IGGA.Models; 
+using BANK_IGGA.Models;
+using System.Net;
+using System.Text.Json.Nodes;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -33,6 +35,17 @@ namespace BANK_IGGA.Controllers
         { 
             return await Task.FromResult(Ok(dt)); 
 
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Nama_Kota>>> GetNamaKota()
+        {
+            List<Nama_Kota> lstKota = new List<Nama_Kota>();
+            WebClient webClient = new WebClient();
+            dynamic result = JsonValue.Parse(webClient.DownloadString("https://id.wikipedia.org/api/rest_v1/page/summary/Daftar_kabupaten_dan_kota_di_Indonesia"));
+            //Console.WriteLine(result.response.user.firstName);
+
+            return await Task.FromResult(Ok(lstKota));
         }
 
         // GET api/<NasabahController>/5
