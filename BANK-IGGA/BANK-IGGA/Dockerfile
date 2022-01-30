@@ -1,5 +1,5 @@
 # Get Base Image (Full .NET Core SDK)
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS base
+FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build-env
 WORKDIR /app
 
 # Copy csproj and restore
@@ -11,7 +11,7 @@ COPY . ./
 RUN dotnet publish -c Release -o out
 
 # Generate runtime image
-FROM mcr.microsoft.com/dotnet/sdk:6.0
+FROM mcr.microsoft.com/dotnet/sdk:6.0-focal
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
