@@ -24,8 +24,30 @@ namespace BANK_IGGA.Controllers
                 alamat = "desa pancur rt 05 rw 01 jepara jawa tengah",
                 tempat_lahir = "Indragiri Hilir",
                 tanggal_lahir = DateTime.Now,
-                no_ktp = "937927376327372287",
+                no_ktp = "0003",
                 nohp = "085155449709"
+
+            },
+             new NasabahModels
+            {
+                id = 2,
+                nama_lengkap = "Cincayy",
+                alamat = "desa pancur rt 05 rw 01 jepara jawa tengah",
+                tempat_lahir = "Indragiri Hilir",
+                tanggal_lahir = DateTime.Now,
+                no_ktp = "456",
+                nohp = "123"
+
+            },
+              new NasabahModels
+            {
+                id = 3,
+                nama_lengkap = "Mother",
+                alamat = "desa pancur rt 05 rw 01 jepara jawa tengah",
+                tempat_lahir = "Indragiri Hilir",
+                tanggal_lahir = DateTime.Now,
+                no_ktp = "789",
+                nohp = "123"
 
             }
         }; 
@@ -37,19 +59,8 @@ namespace BANK_IGGA.Controllers
 
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Nama_Kota>>> GetNamaKota()
-        {
-            List<Nama_Kota> lstKota = new List<Nama_Kota>();
-            WebClient webClient = new WebClient();
-            dynamic result = JsonValue.Parse(webClient.DownloadString("https://id.wikipedia.org/api/rest_v1/page/summary/Daftar_kabupaten_dan_kota_di_Indonesia"));
-            //Console.WriteLine(result.response.user.firstName);
-
-            return await Task.FromResult(Ok(lstKota));
-        }
-
         // GET api/<NasabahController>/5
-        [HttpGet("{id}")]
+        [HttpGet("getByNik")]
         public async Task<ActionResult<IEnumerable<NasabahModels>>> Get(string noktp)
         {
             List<NasabahModels> dto = new List<NasabahModels>(); 
@@ -66,7 +77,7 @@ namespace BANK_IGGA.Controllers
         }
 
         // POST api/<NasabahController>
-        [HttpPost]
+        [HttpPost("add")]
         public async Task<ActionResult<IEnumerable<NasabahModels>>> Post(NasabahModels param)
         {
             dt.Add(param); 
@@ -74,7 +85,7 @@ namespace BANK_IGGA.Controllers
         }
 
         // PUT api/<NasabahController>/5
-        [HttpPut("{id}")]
+        [HttpPut("edit")]
         public async Task<ActionResult<IEnumerable<NasabahModels>>> Put(NasabahModels param)
         {
             var get_by_id = dt.Where(s => s.id == param.id).ToList();
@@ -98,7 +109,7 @@ namespace BANK_IGGA.Controllers
        
 
         // DELETE api/<NasabahController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("delete/{id}")]
         public async Task<ActionResult<IEnumerable<NasabahModels>>> Delete(int id)
         {
             NasabahModels dto = new NasabahModels(); 
@@ -108,15 +119,15 @@ namespace BANK_IGGA.Controllers
                 if (get_by_id.Count > 0) { 
                     for (int x = 0; x < get_by_id.Count; x++)
                     {
-                        dto.id = get_by_id[x].id; 
-                        dto.nama_lengkap = get_by_id[x].nama_lengkap;
-                        dto.alamat = get_by_id[x].alamat;
-                        dto.tempat_lahir = get_by_id[x].tempat_lahir;
-                        dto.tanggal_lahir = get_by_id[x].tanggal_lahir;
-                        dto.no_ktp = get_by_id[x].no_ktp;
-                        dto.nohp = get_by_id[x].nohp;
+                        //dto.id = get_by_id[x].id; 
+                        //dto.nama_lengkap = get_by_id[x].nama_lengkap;
+                        //dto.alamat = get_by_id[x].alamat;
+                        //dto.tempat_lahir = get_by_id[x].tempat_lahir;
+                        //dto.tanggal_lahir = get_by_id[x].tanggal_lahir;
+                        //dto.no_ktp = get_by_id[x].no_ktp;
+                        //dto.nohp = get_by_id[x].nohp;
 
-                        dt.Remove(dto); 
+                        dt.RemoveAt(x); 
 
                     }
                 }
