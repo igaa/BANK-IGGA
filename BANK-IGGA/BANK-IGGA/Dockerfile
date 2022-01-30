@@ -1,22 +1,19 @@
-#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+# Get Base Image (Full .NET Core SDK)
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS base
+WORKDIR /app
 
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+# Copy csproj and restore
+COPY *.csproj ./
+RUN dotnet restore
+
+# Copy everything else and build
+COPY . ./
+RUN dotnet publish -c Release -o out
+
+# Generate runtime image
+FROM mcr.microsoft.com/dotnet/sdk:6.0
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
-
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src
-COPY ["BANK-IGGA/BANK-IGGA.csproj", "BANK-IGGA/"]
-RUN dotnet restore "BANK-IGGA/BANK-IGGA.csproj"
-COPY . .
-WORKDIR "/src/BANK-IGGA"
-RUN dotnet build "BANK-IGGA.csproj" -c Release -o /app/build
-
-FROM build AS publish
-RUN dotnet publish "BANK-IGGA.csproj" -c Release -o /app/publish
-
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "BANK-IGGA.dll"]
